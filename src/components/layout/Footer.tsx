@@ -1,12 +1,7 @@
-
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
-  // Use location to check if we're in a route context
-  // This will throw an error if used outside Router, which helps us diagnose the issue
-  const location = useLocation();
-  
   return (
     <footer className="border-t mt-8">
       <div className="container mx-auto px-4 py-8">
