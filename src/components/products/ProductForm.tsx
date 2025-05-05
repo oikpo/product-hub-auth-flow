@@ -18,8 +18,7 @@ import { Loader2, ImagePlus } from 'lucide-react';
 const productSchema = z.object({
   name: z.string().min(2, 'Product name must be at least 2 characters'),
   description: z.string().optional(),
-  price: z.string().optional()
-    .transform(val => val ? Number(val) : undefined),
+  price: z.coerce.number().optional(),
   sku: z.string().optional(),
   image: z.instanceof(FileList).optional()
     .transform(fileList => fileList?.item(0) || undefined)
@@ -43,7 +42,7 @@ const ProductForm = () => {
     defaultValues: {
       name: '',
       description: '',
-      price: '',
+      price: undefined,
       sku: '',
     },
   });
@@ -236,3 +235,4 @@ const ProductForm = () => {
 };
 
 export default ProductForm;
+
