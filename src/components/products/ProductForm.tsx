@@ -18,7 +18,8 @@ import { Loader2, ImagePlus } from 'lucide-react';
 const productSchema = z.object({
   name: z.string().min(2, 'Product name must be at least 2 characters'),
   description: z.string().optional(),
-  price: z.string().optional().transform(val => val ? parseFloat(val) : undefined),
+  price: z.string().optional()
+    .transform(val => val ? Number(val) : undefined),
   sku: z.string().optional(),
   image: z.instanceof(FileList).optional()
     .transform(fileList => fileList?.item(0) || undefined)
@@ -70,7 +71,7 @@ const ProductForm = () => {
       }
       
       if (values.price !== undefined) {
-        formData.append('price', values.price.toString());
+        formData.append('price', String(values.price));
       }
       
       if (values.sku) {
